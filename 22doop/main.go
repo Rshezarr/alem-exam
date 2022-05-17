@@ -7,7 +7,7 @@ import (
 
 func main() {
 	if len(os.Args) == 4 {
-
+		ErrorCheck(os.Args[1], os.Args[3])
 		a := Atoi(os.Args[1])
 		b := Atoi(os.Args[3])
 		op := os.Args[2]
@@ -29,7 +29,7 @@ func main() {
 					return
 				}
 				c := a + b
-				fmt.Printf("%d", c)
+				fmt.Printf("%d\n", c)
 			case "-":
 				if a < 0 && b > 0 {
 					if a < minInt+b {
@@ -42,24 +42,30 @@ func main() {
 					}
 				}
 				c := a - b
-				fmt.Printf("%d", c)
+				fmt.Printf("%d\n", c)
 			case "/":
 				c := a / b
-				fmt.Printf("%d", c)
-
+				fmt.Printf("%d\n", c)
 			case "%":
 				c := a % b
-				fmt.Printf("%d", c)
-
+				fmt.Printf("%d\n", c)
 			case "*":
 				if a == maxInt || a == minInt || b == maxInt || b == minInt {
 					return
 				}
 				c := a * b
-				fmt.Printf("%d", c)
+				fmt.Printf("%d\n", c)
 
 			}
 			return
+		}
+	}
+}
+
+func ErrorCheck(num1, num2 string) {
+	for _, w := range num1 + num2 {
+		if w != 45 && (w < 48 || w > 57) {
+			os.Exit(0)
 		}
 	}
 }
@@ -78,7 +84,6 @@ func Atoi(s string) int {
 			if w < 48 || w > 58 {
 				return 0
 			}
-
 			num = num*10 + int(w) - 48
 		}
 
