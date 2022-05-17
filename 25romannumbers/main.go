@@ -33,18 +33,19 @@ func main() {
 }
 
 func RomanNumbers(num int) string {
-	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	numbers := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
 	symbols := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
 	var roman string
 	var i int
 
 	for num > 0 {
-		k := num / values[i]
+		k := num / numbers[i]
 		for j := 0; j < k; j++ {
 			roman += symbols[i]
-			num -= values[i]
+			num -= numbers[i]
 		}
 		i++
 	}
+
 	return roman
 }
