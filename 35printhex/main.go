@@ -16,6 +16,13 @@ func main() {
 		}
 
 		hex := strconv.FormatInt(int64(arg), 16)
+
+		// var s string
+		// hex := "0123456789abcdef"
+		// for arg > 0 {
+		// 	s = string(hex[arg%16]) + s
+		// 	arg /= 16
+		// }
 		Print(hex)
 	}
 }
@@ -24,4 +31,5 @@ func Print(s string) {
 	for _, w := range s {
 		z01.PrintRune(w)
 	}
+	z01.PrintRune('\n')
 }

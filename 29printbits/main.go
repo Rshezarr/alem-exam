@@ -17,35 +17,17 @@ func main() {
 
 		var s string
 		for len(s) != 8 {
-			s += Itoa(arg % 2)
+			s = string(rune((arg%2)+48)) + s
 			arg /= 2
 		}
 
 		PrintReverse(s)
-		z01.PrintRune('\n')
 	}
-}
-
-func Itoa(n int) string {
-	ch := ""
-	if n < 0 {
-		n = -n
-		ch = "-"
-	}
-	digits := "0123456789"
-	if n < 10 {
-		return ch + digits[n:n+1]
-	}
-	return ch + Itoa(n/10) + digits[n%10:n%10+1]
 }
 
 func PrintReverse(s string) {
-	res := ""
 	for _, w := range s {
-		res = string(w) + res
+		z01.PrintRune(w)
 	}
-
-	for _, e := range res {
-		z01.PrintRune(e)
-	}
+	z01.PrintRune('\n')
 }

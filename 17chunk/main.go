@@ -23,7 +23,7 @@ func Chunk(slice []int, size int) {
 
 	temp := []int{}
 	res := [][]int{}
-	j := 0
+	var j int
 
 	for i := 0; i < len(slice); i++ {
 		temp = append(temp, slice[i])
@@ -34,8 +34,10 @@ func Chunk(slice []int, size int) {
 			temp = []int{}
 		}
 	}
+
 	if j != 0 {
 		res = append(res, temp)
 	}
+
 	fmt.Println(res)
 }
