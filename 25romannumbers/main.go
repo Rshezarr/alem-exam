@@ -7,43 +7,31 @@ import (
 
 func main() {
 	if len(os.Args) == 2 {
-		arg := os.Args[1]
-		num := BasicAtoi(arg)
-		fmt.Printf("%s \n", ToRoman(num))
+		arg := BasicAtoi(os.Args[1])
+		res1, res2 := ToRoman(arg)
+		fmt.Printf("%s\n%s\n", res1, res2)
+
 	}
 }
 
-func ToRoman(num int) string {
-	romans := ""
+func ToRoman(num int) (string, string) {
+	array_num := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	array_sym := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
+	array_output := []string{"M", "(M-C)", "D", "(D-C)", "C", "(C-X)", "L", "(L-X)", "X", "(X-I)", "V", "(V-I)", "I"}
+	result := ""
+	roman := ""
 
-	numbers := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
-	symbols := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
-	mapRoman := make(map[int]string)
 	i := 0
-	z := 0
 	for num > 0 {
-		k := num / numbers[i]
+		k := num / array_num[i]
 		for j := 0; j < k; j++ {
-			mapRoman[z] = symbols[i]
-			romans += symbols[i]
-			num -= numbers[i]
-			z++
+			roman += array_sym[i]
+			result += array_output[i] + "+"
+			num -= array_num[i]
 		}
 		i++
 	}
-
-	calcRoman := ""
-	for j := 0; j < z; j++ {
-		if len(mapRoman[j]) == 1 {
-			calcRoman += mapRoman[j]
-		} else {
-			calcRoman += "(" + string(mapRoman[j][1]) + "-" + string(mapRoman[j][0]) + ")"
-		}
-		if j != z-1 {
-			calcRoman += "+"
-		}
-	}
-	return calcRoman + "\n" + romans
+	return result[:len(result)-1], roman
 }
 
 func BasicAtoi(s string) int {
