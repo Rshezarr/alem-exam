@@ -12,36 +12,27 @@ func main() {
 		b := Atoi(os.Args[3])
 		op := os.Args[2]
 
+		maxInt := int(^uint(0) >> 1)
+		minInt := -maxInt - 1
+
+		if a >= maxInt && b > minInt || a-minInt == 2 {
+			return
+		}
+
 		if op == "/" && b == 0 {
 			fmt.Println("No division by 0")
 		} else if op == "%" && b == 0 {
 			fmt.Println("No modulo by 0")
 		} else {
-			maxInt := int(^uint(0) >> 1)
-			minInt := -maxInt - 1
-
 			switch op {
 			case "+":
-				if a > 0 && b > maxInt-a {
-					return
-				}
-				if a <= 0 && b < minInt-a {
-					return
-				}
 				c := a + b
 				fmt.Printf("%d\n", c)
 			case "-":
-				if a < 0 && b > 0 {
-					if a < minInt+b {
-						return
-					}
-				}
-				if a > 0 && b < 0 {
-					if a > maxInt+b {
-						return
-					}
-				}
 				c := a - b
+				fmt.Printf("%d\n", c)
+			case "*":
+				c := a * b
 				fmt.Printf("%d\n", c)
 			case "/":
 				c := a / b
@@ -49,16 +40,9 @@ func main() {
 			case "%":
 				c := a % b
 				fmt.Printf("%d\n", c)
-			case "*":
-				if a == maxInt || a == minInt || b == maxInt || b == minInt {
-					return
-				}
-				c := a * b
-				fmt.Printf("%d\n", c)
-
 			}
-			return
 		}
+		return
 	}
 }
 
