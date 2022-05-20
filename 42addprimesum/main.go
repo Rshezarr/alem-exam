@@ -1,48 +1,41 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
-	primes := SieveOfEratosthenes(Atoi(os.Args[1]))
-
+	n := Atoi(os.Args[1])
 	var sum int
-	for _, prime := range primes {
-		sum1 := sum + prime
-		if sum1 < sum {
-			fmt.Println(sum)
-		} else {
-			sum = sum1
+	for i := n; i >= 2; i-- {
+		if IsPrime(i) {
+			sum += i
 		}
+		continue
 	}
-	fmt.Println(sum)
-
+	Print(Itoa(sum))
 }
 
-func SieveOfEratosthenes(n int) []int {
-	integers := make([]bool, n+1)
-	for i := 2; i < n+1; i++ {
-		integers[i] = true
+func IsPrime(n int) bool {
+	if n <= 1 {
+		return false
 	}
 
-	for p := 2; p*p <= n; p++ {
-		if integers[p] {
-			for i := p * 2; i <= n; i += p {
-				integers[i] = false
-			}
+	for i := 2; i <= n/2; i++ {
+		if n%i == 0 {
+			return false
 		}
 	}
+	return true
+}
 
-	var primes []int
-	for p := 2; p <= n; p++ {
-		if integers[p] {
-			primes = append(primes, p)
-		}
+func Print(s string) {
+	for _, w := range s {
+		z01.PrintRune(w)
 	}
-
-	return primes
+	z01.PrintRune('\n')
 }
 
 func Atoi(s string) int {
@@ -68,4 +61,17 @@ func Atoi(s string) int {
 	}
 
 	return num
+}
+
+func Itoa(n int) string {
+	var ch string
+	if n < 0 {
+		n = -n
+		ch = "-"
+	}
+	digits := "0123456789"
+	if n < 10 {
+		return ch + digits[n:n+1]
+	}
+	return ch + Itoa(n/10) + digits[n%10:n%10+1]
 }
