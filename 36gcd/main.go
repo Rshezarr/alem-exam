@@ -15,7 +15,7 @@ func main() {
 	gcd(arg1, arg2)
 }
 
-func gcd(num1 int, num2 int) {
+func gcd(num1, num2 int) {
 	var gcdnum int
 
 	for i := 1; i <= num1 && i <= num2; i++ {
