@@ -41,8 +41,8 @@ func main() {
 				c := a % b
 				fmt.Printf("%d\n", c)
 			}
+			return
 		}
-		return
 	}
 }
 
