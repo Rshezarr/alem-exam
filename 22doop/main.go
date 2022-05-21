@@ -15,7 +15,7 @@ func main() {
 		maxInt := int(^uint(0) >> 1)
 		minInt := -maxInt - 1
 
-		if a >= maxInt && b > minInt || a-minInt == 2 {
+		if a == maxInt && b > minInt || a-minInt == 2 {
 			return
 		}
 
@@ -26,9 +26,17 @@ func main() {
 		} else {
 			switch op {
 			case "+":
+				if a > 0 && b > maxInt-a || a <= 0 && b < minInt-a {
+					return
+				}
 				c := a + b
 				fmt.Printf("%d\n", c)
 			case "-":
+				if a < 0 && b > 0 || a > 0 && b < 0 {
+					if a < minInt+b || a > maxInt+b {
+						return
+					}
+				}
 				c := a - b
 				fmt.Printf("%d\n", c)
 			case "*":
