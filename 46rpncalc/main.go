@@ -49,7 +49,7 @@ func rpncalc(s string) string {
 	if len(stack) != 1 {
 		return "Error"
 	}
-	return itoa(stack[0])
+	return Itoa(stack[0])
 }
 
 func isOpr(r string) bool {
@@ -102,7 +102,7 @@ func clean(s string) string {
 	return txt
 }
 
-func itoa(n int) string {
+func Itoa(n int) string {
 	num := n
 	ch := ""
 	if n < 0 {
@@ -113,5 +113,5 @@ func itoa(n int) string {
 	if num < 10 {
 		return ch + digits[num:num+1]
 	}
-	return ch + itoa(num/10) + digits[num%10:num%10+1]
+	return ch + Itoa(num/10) + digits[num%10:num%10+1]
 }

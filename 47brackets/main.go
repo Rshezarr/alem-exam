@@ -9,14 +9,14 @@ func main() {
 	ar := os.Args
 	if len(ar) > 1 {
 		for _, x := range ar[1:] {
-			fmt.Println(brackets(x))
+			fmt.Println(Brackets(x))
 		}
 	} else {
 		fmt.Println()
 	}
 }
 
-func brackets(s string) string {
+func Brackets(s string) string {
 	br := ""
 	for _, r := range s {
 		if (r == ')' || r == '}' || r == ']') && len(br) == 0 {

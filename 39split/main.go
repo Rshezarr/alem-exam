@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(Split("HelloHAareHAyou", "HA"))
+	fmt.Println(Split("HelloHAhowHAareHAyou", "HA"))
 }
 
 func Split(s, sep string) []string {
@@ -14,13 +14,12 @@ func Split(s, sep string) []string {
 		if s[i:i+len(sep)] == sep {
 			arr = append(arr, str)
 			str = ""
-			i = i + len(sep) - 1
+			i += len(sep) - 1
 		} else {
 			str += string(s[i])
 		}
 	}
 	str += s[len(s)-len(sep):]
 	arr = append(arr, str)
-
 	return arr
 }
