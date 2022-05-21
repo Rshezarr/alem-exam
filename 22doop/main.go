@@ -6,51 +6,47 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 4 {
-		ErrorCheck(os.Args[1], os.Args[3])
-		a := Atoi(os.Args[1])
-		b := Atoi(os.Args[3])
-		op := os.Args[2]
+	if len(os.Args) != 4 {
+		return
+	}
+	ErrorCheck(os.Args[1], os.Args[3])
 
-		maxInt := int(^uint(0) >> 1)
-		minInt := -maxInt - 1
+	a := Atoi(os.Args[1])
+	b := Atoi(os.Args[3])
+	op := os.Args[2]
 
-		if a == maxInt && b > minInt || a-minInt == 2 {
-			return
-		}
+	maxInt := int(^uint(0) >> 1)
+	minInt := -maxInt - 1
 
-		if op == "/" && b == 0 {
-			fmt.Println("No division by 0")
-		} else if op == "%" && b == 0 {
-			fmt.Println("No modulo by 0")
-		} else {
-			switch op {
-			case "+":
-				if a > 0 && b > maxInt-a || a <= 0 && b < minInt-a {
-					return
-				}
-				c := a + b
-				fmt.Printf("%d\n", c)
-			case "-":
-				if a < 0 && b > 0 || a > 0 && b < 0 {
-					if a < minInt+b || a > maxInt+b {
-						return
-					}
-				}
-				c := a - b
-				fmt.Printf("%d\n", c)
-			case "*":
-				c := a * b
-				fmt.Printf("%d\n", c)
-			case "/":
-				c := a / b
-				fmt.Printf("%d\n", c)
-			case "%":
-				c := a % b
-				fmt.Printf("%d\n", c)
+	if op == "/" && b == 0 {
+		fmt.Println("No division by 0")
+	} else if op == "%" && b == 0 {
+		fmt.Println("No modulo by 0")
+	} else {
+		switch op {
+		case "+":
+			// Overflow(a, b, maxInt, minInt, "add")
+			c := a + b
+			if c < 0 && a <= maxInt || a > minInt {
+				return
 			}
-			return
+			fmt.Printf("%d\n", c)
+		case "-":
+			//	Overflow(a, b, maxInt, minInt, "sub")
+			c := a - b
+			fmt.Printf("%d\n", c)
+		case "*":
+			//	Overflow(a, b, maxInt, minInt, "mul")
+			c := a * b
+			fmt.Printf("%d\n", c)
+		case "/":
+			c := a / b
+			fmt.Printf("%d\n", c)
+		case "%":
+			c := a % b
+			fmt.Printf("%d\n", c)
 		}
+		return
 	}
 }
 
@@ -85,3 +81,16 @@ func Atoi(s string) int {
 	}
 	return num
 }
+
+// func Overflow(a, b, maxInt, minInt int, op string) {
+// 	if op == "add" {
+// 		if len(os.Args[1]) >= 19 {
+// 		}
+// 	}
+
+// 	if op == "sub" {
+// 	}
+
+// 	if op == "mul" {
+// 	}
+// }
