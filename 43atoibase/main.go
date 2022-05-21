@@ -45,12 +45,11 @@ func valid(base string) bool {
 }
 
 func inString(r rune, s string) bool {
-	if len(s) == 0 {
-		return false
-	}
-	for _, x := range []rune(s) {
-		if x == r {
-			return true
+	if len(s) != 0 {
+		for _, x := range []rune(s) {
+			if x == r {
+				return true
+			}
 		}
 	}
 	return false

@@ -17,9 +17,7 @@ func main() {
 			} else {
 				res += w + " "
 			}
-
 		}
-
 		for _, w := range res {
 			z01.PrintRune(w)
 		}
@@ -43,7 +41,6 @@ func Split(s string) []string {
 			}
 			temp = ""
 		}
-
 	}
 	return arr
 }
