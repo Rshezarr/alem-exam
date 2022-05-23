@@ -11,24 +11,18 @@ func main() {
 		return
 	}
 	arg := os.Args[1]
-	var fst int
-	var last int
+
+	var s string
 
 	for i := len(arg) - 1; i >= 0; i-- {
-		if last != 0 && arg[i] == ' ' {
-			fst = i + 1
-			break
-		}
-
 		if arg[i] != ' ' {
-			if last != 0 {
-				continue
-			}
-			last = i + 1
+			s = string(arg[i]) + s
+		} else if arg[i] == ' ' && s != "" {
+			break
 		}
 	}
 
-	Println(arg[fst:last])
+	Println(s)
 }
 
 func Println(s string) {
