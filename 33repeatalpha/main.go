@@ -7,13 +7,15 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		for _, w := range os.Args[1] {
-			for i := 0; i < OrderCount(w); i++ {
-				z01.PrintRune(w)
-			}
+	if len(os.Args) != 2 {
+		return
+	}
+	for _, w := range os.Args[1] {
+		for i := 0; i < OrderCount(w); i++ {
+			z01.PrintRune(w)
 		}
 	}
+
 	z01.PrintRune('\n')
 }
 

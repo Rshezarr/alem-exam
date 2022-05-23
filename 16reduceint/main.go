@@ -23,12 +23,16 @@ func main() {
 }
 
 func ReduceInt(a []int, f func(int, int) int) {
-	nw := a[0]
+	ni := a[0]
 	for i := 1; i < len(a); i++ {
-		nw = f(nw, a[i])
+		ni = f(ni, a[i])
 	}
-	n := strconv.Itoa(nw)
-	for _, w := range n {
+	n := strconv.Itoa(ni)
+	Println(n)
+}
+
+func Println(s string) {
+	for _, w := range s {
 		z01.PrintRune(w)
 	}
 	z01.PrintRune('\n')

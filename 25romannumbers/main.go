@@ -6,11 +6,12 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		arg := BasicAtoi(os.Args[1])
-		res1, res2 := ToRoman(arg)
-		fmt.Printf("%s\n%s\n", res1, res2)
+	if len(os.Args) != 2 {
+		return
 	}
+	arg := BasicAtoi(os.Args[1])
+	res1, res2 := ToRoman(arg)
+	fmt.Printf("%s\n%s\n", res1, res2)
 }
 
 func ToRoman(num int) (string, string) {

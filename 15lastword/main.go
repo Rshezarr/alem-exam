@@ -7,29 +7,28 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		arg := os.Args[1]
-		var fst int
-		var last int
-
-		for i := len(arg) - 1; i >= 0; i-- {
-			if last != 0 && arg[i] == ' ' {
-				fst = i + 1
-				break
-			}
-
-			if arg[i] != ' ' {
-				if last != 0 {
-					continue
-				}
-				last = i + 1
-			}
-		}
-
-		Println(arg[fst:last])
-	} else {
+	if len(os.Args) != 2 {
 		return
 	}
+	arg := os.Args[1]
+	var fst int
+	var last int
+
+	for i := len(arg) - 1; i >= 0; i-- {
+		if last != 0 && arg[i] == ' ' {
+			fst = i + 1
+			break
+		}
+
+		if arg[i] != ' ' {
+			if last != 0 {
+				continue
+			}
+			last = i + 1
+		}
+	}
+
+	Println(arg[fst:last])
 }
 
 func Println(s string) {

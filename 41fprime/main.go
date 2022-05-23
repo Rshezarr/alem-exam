@@ -7,14 +7,15 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		num, err := strconv.Atoi(os.Args[1])
-		if err != nil || num <= 1 {
-			return
-		}
-		Fprime(num)
-		fmt.Println()
+	if len(os.Args) != 2 {
+		return
 	}
+	num, err := strconv.Atoi(os.Args[1])
+	if err != nil || num <= 1 {
+		return
+	}
+	Fprime(num)
+	fmt.Println()
 }
 
 func Fprime(n int) {

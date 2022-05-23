@@ -8,12 +8,12 @@ import (
 
 func main() {
 	if len(os.Args) == 4 {
-		l1 := os.Args[2][0]
-		l2 := os.Args[3][0]
+		l1 := rune(os.Args[2][0])
+		l2 := rune(os.Args[3][0])
 		word := os.Args[1]
 		for _, w := range word {
-			if w == rune(l1) {
-				w = rune(l2)
+			if w == l1 {
+				w = l2
 			}
 			z01.PrintRune(w)
 		}

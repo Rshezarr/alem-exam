@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		Print(SplitAndJoin(os.Args[1]))
+	if len(os.Args) != 2 {
+		return
 	}
+	Print(SplitAndJoin(os.Args[1]))
 }
 
 func SplitAndJoin(s string) string {

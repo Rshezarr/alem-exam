@@ -7,23 +7,24 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		vowels := "ioueaIOUEA"
-		isVowel := false
-		arg := os.Args[1]
+	if len(os.Args) != 2 {
+		return
+	}
+	vowels := "ioueaIOUEA"
+	isVowel := false
+	arg := os.Args[1]
 
-		for _, w := range vowels {
-			if rune(arg[0]) == w {
-				arg += "ay"
-				isVowel = true
-			}
+	for _, w := range vowels {
+		if rune(arg[0]) == w {
+			arg += "ay"
+			isVowel = true
 		}
+	}
 
-		if isVowel {
-			Println(arg)
-		} else {
-			Change(arg, vowels)
-		}
+	if isVowel {
+		Println(arg)
+	} else {
+		Change(arg, vowels)
 	}
 }
 

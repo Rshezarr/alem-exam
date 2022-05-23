@@ -8,23 +8,24 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		arg, err := strconv.Atoi(os.Args[1])
-		if err != nil {
-			Print("ERROR")
-			return
-		}
-
-		hex := strconv.FormatInt(int64(arg), 16)
-
-		// var s string
-		// hex := "0123456789abcdef"
-		// for arg > 0 {
-		// 	s = string(hex[arg%16]) + s
-		// 	arg /= 16
-		// }
-		Print(hex)
+	if len(os.Args) != 2 {
+		return
 	}
+	arg, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		Print("ERROR")
+		return
+	}
+
+	hex := strconv.FormatInt(int64(arg), 16)
+
+	// var s string
+	// hex := "0123456789abcdef"
+	// for arg > 0 {
+	// 	s = string(hex[arg%16]) + s
+	// 	arg /= 16
+	// }
+	Print(hex)
 }
 
 func Print(s string) {

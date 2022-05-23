@@ -8,20 +8,18 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		var num int
-		arg, err := strconv.Atoi(os.Args[1])
+	if len(os.Args) != 2 {
+		return
+	}
+	var num int
+	arg, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
 
-		if err != nil {
-			panic(err)
-		}
-
-		for i := 1; i <= 9; i++ {
-			num = i * arg
-			Println(Itoa(i) + " x " + Itoa(arg) + " = " + Itoa(num))
-		}
-	} else {
-		z01.PrintRune('\n')
+	for i := 1; i <= 9; i++ {
+		num = i * arg
+		Println(Itoa(i) + " x " + Itoa(arg) + " = " + Itoa(num))
 	}
 }
 

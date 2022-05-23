@@ -10,9 +10,5 @@ func main() {
 }
 
 func StrLen(s string) int {
-	var c int
-	for range s {
-		c++
-	}
-	return c
+	return len(s)
 }

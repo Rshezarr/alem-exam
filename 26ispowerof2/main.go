@@ -8,14 +8,15 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		arg, _ := strconv.Atoi(os.Args[1])
-		flag := IsPower(arg)
-		if flag == 0 {
-			Println("true")
-		} else {
-			Println("false")
-		}
+	if len(os.Args) != 2 {
+		return
+	}
+	arg, _ := strconv.Atoi(os.Args[1])
+	flag := IsPower(arg)
+	if flag == 0 {
+		Println("true")
+	} else {
+		Println("false")
 	}
 }
 

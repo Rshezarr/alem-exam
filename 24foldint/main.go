@@ -20,6 +20,8 @@ func main() {
 	FoldInt(Sub, table, ac)
 }
 
+// Start
+
 func FoldInt(f func(int, int) int, a []int, n int) {
 	var sum int
 	for _, w := range a {
@@ -32,7 +34,6 @@ func FoldInt(f func(int, int) int, a []int, n int) {
 		z01.PrintRune(w)
 	}
 	z01.PrintRune('\n')
-
 }
 
 func Itoa(n int) string {
@@ -47,6 +48,8 @@ func Itoa(n int) string {
 	}
 	return ch + Itoa(n/10) + digits[n%10:n%10+1]
 }
+
+// End
 
 func Add(a, b int) int {
 	return a + b

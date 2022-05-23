@@ -7,11 +7,12 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 2 {
-		arg := os.Args[1]
-		res := SplitAndJoin(arg)
-		Print(res)
+	if len(os.Args) != 2 {
+		return
 	}
+	arg := os.Args[1]
+	res := SplitAndJoin(arg)
+	Print(res)
 }
 
 func SplitAndJoin(s string) string {
