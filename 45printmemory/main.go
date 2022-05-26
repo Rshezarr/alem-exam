@@ -1,55 +1,51 @@
 package main
 
-import "github.com/01-edu/z01"
+import (
+	"unicode"
+
+	"github.com/01-edu/z01"
+)
 
 func main() {
-	arr := [10]int{104, 101, 108, 108, 111, 16, 21, 42}
-	PrintMemory(arr)
+	PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
 }
 
-func PrintMemory(arr [10]int) {
-	str := ""
-	txt := ""
-	z := 0
-	for _, n := range arr {
-		h := hex(n)
-		if len(h) < 4 {
-			for x := 0; x <= 5-len(h); x++ {
-				h += "0"
-			}
-		}
-		h += " 0000"
-		if len(str) == 0 || z == 0 {
-			str += h
+func PrintMemory(arr [10]byte) {
+	var temp string
+	for _, v := range arr {
+		temp += string(PrintHex(int(v))) + " "
+	}
+
+	Println(temp[:11])
+	Println(temp[12:23])
+	Println(temp[24:29])
+	var str string
+	for _, v := range arr {
+		if unicode.IsGraphic(rune(v)) {
+			str += string(v)
 		} else {
-			str += " " + h
-		}
-		z++
-		if z == 4 {
-			str += "\n"
-			z = 0
-		}
-		if n < 32 {
-			txt += string(rune('.'))
-		} else {
-			txt += string(rune(n))
+			str += "."
 		}
 	}
 	Println(str)
-	Println(txt)
 }
 
-func hex(n int) string {
-	base := "0123456789abcdef"
-	if n < 16 {
-		return base[n : n+1]
+func PrintHex(n int) string {
+	var res string
+	if n == 0 {
+		return "00"
 	}
-	return hex(n/16) + string(base[n%16:n%16+1])
+	base := "0123456789abcdef"
+	for n != 0 {
+		res = string(base[n%16]) + res
+		n /= 16
+	}
+	return res
 }
 
 func Println(s string) {
-	for _, r := range s {
-		z01.PrintRune(r)
+	for _, ch := range s {
+		z01.PrintRune(ch)
 	}
 	z01.PrintRune('\n')
 }

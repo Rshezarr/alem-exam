@@ -18,13 +18,9 @@ func main() {
 	mapC := make(map[rune]bool)
 
 	for _, w := range args {
-		mapC[w] = true
-	}
-
-	for _, w := range args {
-		if mapC[w] {
+		if !mapC[w] {
 			z01.PrintRune(w)
-			mapC[w] = false
+			mapC[w] = true
 		}
 	}
 	z01.PrintRune('\n')
