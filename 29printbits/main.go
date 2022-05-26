@@ -13,7 +13,7 @@ func main() {
 	}
 	arg, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		PrintReverse("00000000")
+		Print("00000000")
 		return
 	}
 
@@ -23,10 +23,10 @@ func main() {
 		arg /= 2
 	}
 
-	PrintReverse(s)
+	Print(s)
 }
 
-func PrintReverse(s string) {
+func Print(s string) {
 	for _, w := range s {
 		z01.PrintRune(w)
 	}

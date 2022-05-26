@@ -16,15 +16,7 @@ func main() {
 		Print("ERROR")
 		return
 	}
-
 	hex := strconv.FormatInt(int64(arg), 16)
-
-	// var s string
-	// hex := "0123456789abcdef"
-	// for arg > 0 {
-	// 	s = string(hex[arg%16]) + s
-	// 	arg /= 16
-	// }
 	Print(hex)
 }
 
