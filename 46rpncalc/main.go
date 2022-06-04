@@ -9,41 +9,47 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Print("Error\n")
+		fmt.Println("Error")
 		return
 	}
 	arg := os.Args[1]
+
 	input := strings.Split(arg, " ")
-	var arr []int
-	var newinput []string
+
+	var num_arr []int
+	var str_arr []string
+
 	for _, w := range input {
 		if w != "" {
-			newinput = append(newinput, w)
+			str_arr = append(str_arr, w)
 		}
 	}
-	for _, w := range newinput {
+
+	for _, w := range str_arr {
 		num, err := strconv.Atoi(w)
+
 		if err != nil {
-			if len(arr) < 2 {
-				fmt.Print("Error\n")
+			if len(num_arr) < 2 {
+				fmt.Println("Error")
 				return
 			}
+
 			switch w {
 			case "+":
-				arr[len(arr)-2] += arr[len(arr)-1]
-				arr = arr[:len(arr)-1]
+				num_arr[len(num_arr)-2] += num_arr[len(num_arr)-1]
+				num_arr = num_arr[:len(num_arr)-1]
 			case "-":
-				arr[len(arr)-2] -= arr[len(arr)-1]
-				arr = arr[:len(arr)-1]
-			case "/":
-				arr[len(arr)-2] /= arr[len(arr)-1]
-				arr = arr[:len(arr)-1]
-			case "%":
-				arr[len(arr)-2] %= arr[len(arr)-1]
-				arr = arr[:len(arr)-1]
+				num_arr[len(num_arr)-2] -= num_arr[len(num_arr)-1]
+				num_arr = num_arr[:len(num_arr)-1]
 			case "*":
-				arr[len(arr)-2] *= arr[len(arr)-1]
-				arr = arr[:len(arr)-1]
+				num_arr[len(num_arr)-2] *= num_arr[len(num_arr)-1]
+				num_arr = num_arr[:len(num_arr)-1]
+			case "/":
+				num_arr[len(num_arr)-2] /= num_arr[len(num_arr)-1]
+				num_arr = num_arr[:len(num_arr)-1]
+			case "%":
+				num_arr[len(num_arr)-2] %= num_arr[len(num_arr)-1]
+				num_arr = num_arr[:len(num_arr)-1]
 			case "":
 				continue
 			default:
@@ -51,12 +57,13 @@ func main() {
 				return
 			}
 		} else {
-			arr = append(arr, num)
+			num_arr = append(num_arr, num)
 		}
 	}
-	if len(arr) != 1 {
+
+	if len(num_arr) != 1 {
 		fmt.Println("Error")
 		return
 	}
-	fmt.Println(arr[0])
+	fmt.Println(num_arr[0])
 }
