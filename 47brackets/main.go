@@ -28,11 +28,9 @@ func Brackets(s string) string {
 		if v == ')' && b[len(b)-1] == '(' {
 			b = b[:len(b)-1]
 		}
-
 		if v == ']' && b[len(b)-1] == '[' {
 			b = b[:len(b)-1]
 		}
-
 		if v == '}' && b[len(b)-1] == '{' {
 			b = b[:len(b)-1]
 		}

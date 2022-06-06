@@ -17,6 +17,7 @@ func main() {
 	input := strings.Split(arg, " ")
 
 	var num_arr []int
+	l := len(num_arr)
 	var str_arr []string
 
 	for _, w := range input {
@@ -29,27 +30,27 @@ func main() {
 		num, err := strconv.Atoi(w)
 
 		if err != nil {
-			if len(num_arr) < 2 {
+			if l < 2 {
 				fmt.Println("Error")
 				return
 			}
-
+			l := l
 			switch w {
 			case "+":
-				num_arr[len(num_arr)-2] += num_arr[len(num_arr)-1]
-				num_arr = num_arr[:len(num_arr)-1]
+				num_arr[l-2] += num_arr[l-1]
+				num_arr = num_arr[:l-1]
 			case "-":
-				num_arr[len(num_arr)-2] -= num_arr[len(num_arr)-1]
-				num_arr = num_arr[:len(num_arr)-1]
+				num_arr[l-2] -= num_arr[l-1]
+				num_arr = num_arr[:l-1]
 			case "*":
-				num_arr[len(num_arr)-2] *= num_arr[len(num_arr)-1]
-				num_arr = num_arr[:len(num_arr)-1]
+				num_arr[l-2] *= num_arr[l-1]
+				num_arr = num_arr[:l-1]
 			case "/":
-				num_arr[len(num_arr)-2] /= num_arr[len(num_arr)-1]
-				num_arr = num_arr[:len(num_arr)-1]
+				num_arr[l-2] /= num_arr[l-1]
+				num_arr = num_arr[:l-1]
 			case "%":
-				num_arr[len(num_arr)-2] %= num_arr[len(num_arr)-1]
-				num_arr = num_arr[:len(num_arr)-1]
+				num_arr[l-2] %= num_arr[l-1]
+				num_arr = num_arr[:l-1]
 			case "":
 				continue
 			default:
@@ -61,7 +62,7 @@ func main() {
 		}
 	}
 
-	if len(num_arr) != 1 {
+	if l != 1 {
 		fmt.Println("Error")
 		return
 	}

@@ -14,7 +14,7 @@ func main() {
 	var num int
 	arg, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	for i := 1; i <= 9; i++ {

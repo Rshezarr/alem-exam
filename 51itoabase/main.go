@@ -11,23 +11,23 @@ func ItoaBase(value, base int) string {
 		return "0"
 	}
 
-	var s string
+	var res string
 
 	if value < 0 {
 		value = -value
-		s = "-"
+		res = "-"
 	}
 
-	str := "0123456789ABCDEF"
-	str = str[:base]
-	l := len(str)
-	var txt string
+	b := "0123456789ABCDEF"
+	b = b[:base]
+	l := len(b)
+
 	for i := 1; i < l; i++ {
 		if value == 0 {
 			break
 		}
-		txt = string(str[value%l]) + txt
-		value = value / 1
+		res = string(b[value%l]) + res
+		value = value / l
 	}
-	return s + txt
+	return res
 }

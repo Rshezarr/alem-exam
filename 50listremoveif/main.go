@@ -12,17 +12,17 @@ type List struct {
 
 func ListRemoveIf(l *List, data_ref interface{}) {
 	var prev *NodeL
-
-	for l.Head != nil {
-		if l.Head.Data == data_ref {
+	lh := l.Head
+	for lh != nil {
+		if lh.Data == data_ref {
 			if prev == nil {
-				l.Head = l.Head.Next
+				lh = lh.Next
 			} else {
-				prev.Next = l.Head.Next
+				prev.Next = lh.Next
 			}
 		} else {
-			prev = l.Head
+			prev = lh
 		}
-		l.Head = l.Head.Next
+		lh = lh.Next
 	}
 }

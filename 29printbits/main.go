@@ -24,11 +24,11 @@ func main() {
 	}
 
 	Print(s)
+	z01.PrintRune('\n')
 }
 
 func Print(s string) {
 	for _, w := range s {
 		z01.PrintRune(w)
 	}
-	z01.PrintRune('\n')
 }

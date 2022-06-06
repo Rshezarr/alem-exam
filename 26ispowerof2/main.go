@@ -11,9 +11,12 @@ func main() {
 	if len(os.Args) != 2 {
 		return
 	}
-	arg, _ := strconv.Atoi(os.Args[1])
-	flag := IsPower(arg)
-	if flag == 0 {
+	arg, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		return
+	}
+
+	if IsPower(arg) == 0 {
 		Println("true")
 	} else {
 		Println("false")

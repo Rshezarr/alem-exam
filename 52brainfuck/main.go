@@ -7,65 +7,48 @@ import (
 )
 
 func main() {
-	ar := os.Args
-	if len(ar) == 2 {
-		BrainFuck(ar[1])
-	} else {
-		Print("\n")
+	if len(os.Args) != 2 {
+		return
 	}
-}
 
-func BrainFuck(s string) {
-	b := [2048]byte{}
-	x := 0
-	p := &b[x]
-	depth := 0
-	for i := 0; i < len(s); i++ {
-		c := s[i]
-		switch c {
-		case '>':
-			x++
-		case '<':
-			x--
-		case '-':
-			*p--
-		case '+':
-			*p++
-		case '.':
-			Print(string(*p))
-		case '[':
-			depth++
-			if *p == 0 {
-				oldDepth := depth - 1
-				for oldDepth != depth {
-					i++
-					if s[i] == '[' {
-						depth++
-					} else if s[i] == ']' {
-						depth--
-					}
-				}
-			}
-		case ']':
-			depth--
-			if *p != 0 {
-				oldDepth := depth + 1
-				for oldDepth != depth {
-					i--
-					if s[i] == '[' {
-						depth++
-					} else if s[i] == ']' {
-						depth--
-					}
-				}
-			}
+	arg := os.Args[1]
+
+	var arr [2048]byte
+	var pow int
+	var brack []int
+	pos := -1
+
+	for i, v := range arg {
+		if v == '[' {
+			brack = append(brack, i)
 		}
-		p = &b[x]
 	}
-}
 
-func Print(s string) {
-	for _, r := range s {
-		z01.PrintRune(r)
+	for i := 0; i < len(arg); i++ {
+		switch arg[i] {
+		case '+':
+			arr[pow]++
+		case '-':
+			arr[pow]--
+		case '<':
+			pow--
+		case '>':
+			pow++
+		case '.':
+			z01.PrintRune(rune(arr[pow]))
+		case ']':
+			if arr[pow] == 0 {
+				pos--
+			} else {
+				for j := i; j >= 0; j-- {
+					if arg[j] == '[' && j == brack[pos] {
+						i = j
+						break
+					}
+				}
+			}
+		case '[':
+			pos++
+		}
 	}
 }

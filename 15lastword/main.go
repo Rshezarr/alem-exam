@@ -17,7 +17,7 @@ func main() {
 	for i := len(arg) - 1; i >= 0; i-- {
 		if arg[i] != ' ' {
 			s = string(arg[i]) + s
-		} else if arg[i] == ' ' && s != "" {
+		} else if len(s) != 0 {
 			break
 		}
 	}

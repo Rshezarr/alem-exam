@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	if len(os.Args[1]) != 1 {
-		for _, w := range os.Args[1] {
-			z01.PrintRune(w)
-		}
-		z01.PrintRune('\n')
-	} else {
+	if len(os.Args[1]) == 1 {
 		return
 	}
+
+	for _, w := range os.Args[1] {
+		z01.PrintRune(w)
+	}
+	z01.PrintRune('\n')
 }
