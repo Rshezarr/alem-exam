@@ -1,33 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	fmt.Println(ItoaBase(2, 2))
+	fmt.Println(ItoaBase(125, 16))
+	fmt.Println(ItoaBase(math.MaxInt, 16))
+	fmt.Println(ItoaBase(math.MinInt, 16))
 }
 
 func ItoaBase(value, base int) string {
 	if value == 0 {
 		return "0"
 	}
-
-	var res string
-
+	var m string
+	var fl bool
 	if value < 0 {
-		value = -value
-		res = "-"
+		fl = true
+		m = "-"
 	}
 
-	b := "0123456789ABCDEF"
-	b = b[:base]
-	l := len(b)
-
-	for i := 1; i < l; i++ {
-		if value == 0 {
-			break
+	hex := "0123456789ABCDEF"
+	hex = hex[:base]
+	var res string
+	for value != 0 {
+		if fl {
+			res = string(hex[(value%base)*-1]) + res
+		} else {
+			res = string(hex[(value%base)]) + res
 		}
-		res = string(b[value%l]) + res
-		value = value / l
+		value /= base
 	}
-	return res
+	return m + res
 }

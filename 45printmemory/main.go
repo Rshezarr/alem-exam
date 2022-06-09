@@ -11,40 +11,44 @@ func main() {
 }
 
 func PrintMemory(arr [10]byte) {
-	var firs_res string
-	for _, v := range arr {
-		firs_res += PrintHex(int(v)) + " "
+	var fres string
+	for i := 0; i < len(arr); i++ {
+		fres += PrintHex(int(arr[i])) + " "
 	}
-	Println(firs_res[:11])
-	Println(firs_res[12:23])
-	Println(firs_res[24:29])
-	var sec_res string
+	Print(fres[:11])
+	Print(fres[12:23])
+	Print(fres[24:29])
+	var sres string
 	for _, v := range arr {
 		if unicode.IsGraphic(rune(v)) {
-			sec_res += string(v)
+			sres += string(v)
 		} else {
-			sec_res += "."
+			sres += "."
 		}
 	}
-	Println(sec_res)
+	Print(sres)
 }
 
 func PrintHex(n int) string {
-	var res string
-	base := "0123456789abcdef"
 	if n == 0 {
 		return "00"
 	}
+	hex := "0123456789abcdef"
+	var res string
 	for n != 0 {
-		res = string(base[n%16]) + res
+		res = string(hex[n%16]) + res
 		n /= 16
+	}
+
+	if len(res) == 1 {
+		return "0" + res
 	}
 	return res
 }
 
-func Println(s string) {
-	for _, w := range s {
-		z01.PrintRune(w)
+func Print(s string) {
+	for _, v := range s {
+		z01.PrintRune(v)
 	}
 	z01.PrintRune('\n')
 }

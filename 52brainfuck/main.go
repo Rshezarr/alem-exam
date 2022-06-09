@@ -11,44 +11,46 @@ func main() {
 		return
 	}
 
-	arg := os.Args[1]
+	code := os.Args[1]
 
 	var arr [2048]byte
-	var pow int
-	var brack []int
+	var bracks []int
 	pos := -1
+	var pow int
 
-	for i, v := range arg {
-		if v == '[' {
-			brack = append(brack, i)
+	for i, r := range code {
+		if r == '[' {
+			bracks = append(bracks, i)
 		}
 	}
 
-	for i := 0; i < len(arg); i++ {
-		switch arg[i] {
+	for i := 0; i < len(code); i++ {
+		switch code[i] {
 		case '+':
 			arr[pow]++
 		case '-':
 			arr[pow]--
-		case '<':
-			pow--
 		case '>':
 			pow++
+		case '<':
+			pow--
 		case '.':
 			z01.PrintRune(rune(arr[pow]))
 		case ']':
 			if arr[pow] == 0 {
 				pos--
 			} else {
-				for j := i; j >= 0; j-- {
-					if arg[j] == '[' && j == brack[pos] {
+				for j := i; i >= 0; j-- {
+					if code[j] == '[' && bracks[pos] == j {
 						i = j
 						break
+
 					}
 				}
 			}
 		case '[':
 			pos++
+
 		}
 	}
 }
