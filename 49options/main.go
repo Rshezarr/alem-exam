@@ -1,66 +1,56 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
-var chars = "abcdefghijklmnopqrstuvwxyz"
-
 func main() {
-	ar := os.Args
-	if len(ar) >= 1 {
-		fmt.Println(options(ar[1:]))
-	}
-}
-
-func options(ar []string) string {
-	if len(ar) == 0 {
-		return "options: " + chars
+	if len(os.Args) == 1 {
+		Print("options: abcdefghijklmnopqrstuvwxyz")
+		return
 	}
 
-	new := ""
-	for _, z := range ar {
-		if z[:2] == "-h" {
-			return "options: " + chars
+	res := make([]bool, 32)
+
+	for _, arg := range os.Args[1:] {
+		if arg[0] == '-' && len(arg) == 1 {
+			Print("Invalid Option")
+			return
 		}
-		for i, r := range z {
-			if i == 0 {
-				continue
-			}
-			if r < 'a' || r > 'z' {
-				return "Invalid Option"
-			}
+
+		if arg[:2] == "-h" {
+			Print("options: abcdefghijklmnopqrstuvwxyz")
+			return
 		}
-		new += z
+
+		for _, w := range arg[1:] {
+			if w < 'a' || w > 'z' {
+				Print("Invalid Option")
+				return
+			}
+			res[31-(w-'a')] = true
+		}
 	}
-	k := 1
-	str := "000000"
-	for _, r := range rev(chars) {
-		n := 0
-		for _, k := range new {
-			if r == k {
-				n++
-				break
-			}
-		}
-		if len(str)-(k-1) == 8*k {
-			str += " "
-			k++
-		}
-		if n > 0 {
-			str += "1"
+
+	for i, w := range res {
+		if w {
+			z01.PrintRune('1')
 		} else {
-			str += "0"
+			z01.PrintRune('0')
+		}
+
+		if (i+1)%8 == 0 && i != len(res)-1 {
+			z01.PrintRune(' ')
 		}
 	}
-	return str
+	z01.PrintRune('\n')
 }
 
-func rev(s string) string {
-	l := len(s)
-	if l == 0 {
-		return s
+func Print(s string) {
+	for _, w := range s {
+		z01.PrintRune(w)
 	}
-	return s[l-1:] + rev(s[:l-1])
+	z01.PrintRune('\n')
 }
