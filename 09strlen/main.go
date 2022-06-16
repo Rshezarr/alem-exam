@@ -10,5 +10,6 @@ func main() {
 }
 
 func StrLen(s string) int {
-	return len(s)
+	str := []rune(s)
+	return len(str)
 }
