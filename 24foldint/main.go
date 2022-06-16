@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	table := []int{1, 2, 3}
+	table := []int{21, 31, 20, 41}
 	ac := 93
 	FoldInt(Add, table, ac)
 	FoldInt(Mul, table, ac)
@@ -23,14 +23,11 @@ func main() {
 // Start
 
 func FoldInt(f func(int, int) int, a []int, n int) {
-	var sum int
-	for _, w := range a {
-		sum += w
+	for i := 0; i < len(a); i++ {
+		n = f(n, a[i])
 	}
 
-	res := f(n, sum)
-
-	for _, w := range Itoa(res) {
+	for _, w := range Itoa(n) {
 		z01.PrintRune(w)
 	}
 	z01.PrintRune('\n')

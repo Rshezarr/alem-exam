@@ -10,28 +10,28 @@ func main() {
 		return
 	}
 	arg := BasicAtoi(os.Args[1])
-	res1, res2 := ToRoman(arg)
-	fmt.Printf("%s\n%s\n", res1, res2)
-}
+	if arg >= 4000 || arg < 1 {
+		fmt.Printf("ERROR: cannot convert to roman digit\n")
+		return
+	}
 
-func ToRoman(num int) (string, string) {
 	num_array := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
 	sym_array := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
 	symCalc_arrray := []string{"M", "(M-C)", "D", "(D-C)", "C", "(C-X)", "L", "(L-X)", "X", "(X-I)", "V", "(V-I)", "I"}
 	var roman string
 	var calcRoman string
-
 	var i int
-	for num > 0 {
-		k := num / num_array[i]
+
+	for arg > 0 {
+		k := arg / num_array[i]
 		for j := 0; j < k; j++ {
 			roman += sym_array[i]
 			calcRoman += symCalc_arrray[i] + "+"
-			num -= num_array[i]
+			arg -= num_array[i]
 		}
 		i++
 	}
-	return calcRoman[:len(calcRoman)-1], roman
+	fmt.Printf("%s\n%s\n", calcRoman[:len(calcRoman)-1], roman)
 }
 
 func BasicAtoi(s string) int {

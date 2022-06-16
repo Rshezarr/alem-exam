@@ -16,18 +16,15 @@ func main() {
 		return
 	}
 
-	if IsPower(arg) == 0 {
+	if IsPower(arg) {
 		Println("true")
 	} else {
 		Println("false")
 	}
 }
 
-func IsPower(n int) int {
-	if n == 0 {
-		return 1
-	}
-	return n & (n - 1)
+func IsPower(n int) bool {
+	return n&(n-1) == 0
 }
 
 func Println(s string) {

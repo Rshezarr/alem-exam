@@ -36,8 +36,8 @@ func ListRemoveIf(l *List, data_ref interface{}) {
 		lh = lh.Next
 	}
 }
-
 // End
+
 func PrintList(l *List) {
 	it := l.Head
 	for it != nil {
